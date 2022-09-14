@@ -37,7 +37,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $Prenom = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $addresse = null;
+    private ?string $adresse = null;
 
     #[ORM\Column(length: 255)]
     private ?string $ville = null;
@@ -159,14 +159,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAddresse(): ?string
+    public function getAdresse(): ?string
     {
-        return $this->addresse;
+        return $this->adresse;
     }
 
-    public function setAddresse(string $addresse): self
+    public function setAdresse(string $adresse): self
     {
-        $this->addresse = $addresse;
+        $this->adresse = $adresse;
 
         return $this;
     }

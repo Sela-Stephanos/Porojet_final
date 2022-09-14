@@ -1,13 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
-
+{% block title %}Inscription{% endblock %}
+{% block css %}<link rel="stylesheet" href="css/form.css"/>{% endblock %}
 {% block main %}
-    <section>
+    <section class="formulaire-inscription">
         <div class="container">
         {{ form_start(registrationForm) }}
         <h1>Inscription </h1>
+
         <div class="row">
+            <div class="col-sm-6">{{ form_row(registrationForm.nom, {
+                    label: 'Nom'
+                }) }}</div>
+            <div class="col-sm-6">  {{ form_row(registrationForm.prenom, {
+                    label: 'Prenom'
+                }) }} </div>
+        </div>
+            <div class="row">
             <div class="col-sm-6">{{ form_row(registrationForm.username, {
                     label: 'Pseudo'
                 }) }}</div>
@@ -15,14 +24,22 @@
                     label: 'Mot de Passe'
                 }) }} </div>
         </div>
-
-
-
-
-
+            <div class="row">
+                <div class="col-sm-6"> {{ form_row(registrationForm.email) }}</div>
+            </div>
+        <div class="row">
+                <div class="col-sm-6"> {{ form_row(registrationForm.adresse, {
+                        label: 'Adresse'
+                    }) }}</div>
+                <div class="col-sm-4"> {{ form_row(registrationForm.ville, {
+                        label: 'Ville'
+                    }) }}</div>
+                <div class="col-sm-2"> {{ form_row(registrationForm.cp, {
+                        label: 'Code Postale'
+                    }) }}</div>
+            </div>
         {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn ">Register</button>
+        <button type="submit" class="btn btn-primary" style="text-align: center">S'inscrire </button>
         {{ form_end(registrationForm) }}
         </div>
     </section>
