@@ -1,19 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>{% block title %} MÉTÉORE {% endblock %}</title>
+        <link rel="stylesheet" href="css/bootstrap.css"/>
+        <link rel="stylesheet" href="css/navbar.css"/>
+        <link rel="stylesheet" href="css/home.css"/>
+        {% block css %}{% endblock %}
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+        <link
+                href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Flex:opsz,wght@8..144,100;8..144,300;8..144,500;8..144,700;8..144,900&display=swap"
+                rel="stylesheet"
+        />
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <header>
+        {% block nav %}
+
+
+            <nav>
+                <a href="#" class="nav-icon" aria-label="visit homepage" aria-current="page">
+                    <img src="{{asset('ressources/logo.JPG')}}" alt="chat icon">
+                    <!--<span>EverChat</span> -->
+                </a>
+
+                <div class="main-navlinks">
+                    <button class="hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="navlinks-container">
+                        <a href="{{ path('home') }}" aria-current="page"><i class='bx bxs-home' style='color:white'></i> HOME</a>
+                        <a href="{{ path('info') }}"><i class='bx bxs-contact' style='color:white'> </i>CONTACT</a>
+                        <a href="{{ path('panier') }}"> <i class='bx bxs-shopping-bag' style='color:white' > </i>PANIER</a>
+                        <div class="drop">
+                            <a href="{{ path('casque') }}"><i class='bx bxs-store' style='color:white' ></i> BOUTIQUE</a>
+                            <div class="content">
+                                <a href="">CASQUES</a>
+                                <a href="">ACCESOIRES</a>
+                                <a href="">EPAULIÈRES</a>
+                                <a href="">CRAMPONS</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-authentication">
+                    <a href="#" class="sign-user" aria-label="Sign in page">
+                        <img src="{{ asset('ressources/user.svg') }}" alt="user-icon">
+                    </a>
+                    <div class="sign-btns">
+                        <button id="Connexion" type="button">Connexion</button>
+                        <button id="Inscription" type="button">Inscription</button>
+                    </div>
+                </div>
+            </nav>
+        {% endblock %}
+    </header>
+
+    <main>
+        {% block main %} {% endblock %}
+    </main>
+    <footer>
+        <a href="#">&copy; Météore de Fontenay</a>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        document.getElementById("Connexion").onclick = function () {
+            location.href = "{{ path('connexion') }}";
+        };
+
+        document.getElementById("Inscription").onclick = function () {
+            location.href = "{{ path('inscription') }}";
+        };
+    </script>
+    {% block js %}{% endblock %}
     </body>
 </html>
