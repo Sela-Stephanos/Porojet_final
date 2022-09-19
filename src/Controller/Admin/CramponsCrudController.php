@@ -22,8 +22,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CramponsCrudController extends AbstractCrudController
 {
-    public const CP_PATH = 'upload/images/crampons';
-    public const CP_DIR = 'public/images';
+    public const CP_PATH = 'images/crampons';
+    public const CP_DIR = 'public/images/crampons';
     public const DUPLICATE = 'duplicate';
     public static function getEntityFqcn(): string
     {

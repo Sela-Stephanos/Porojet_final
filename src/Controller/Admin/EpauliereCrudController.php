@@ -23,8 +23,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EpauliereCrudController extends AbstractCrudController
 {
-    public const EPL_PATH = 'upload/images/epauliere';
-    public const EPL_DIR = 'public/images';
+    public const EPL_PATH = 'images/epaul';
+    public const EPL_DIR = 'public/images/epaul';
     public const DUPLICATE = 'duplicate';
     public static function getEntityFqcn(): string
     {

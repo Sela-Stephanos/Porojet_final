@@ -55,10 +55,22 @@
                     <a href="#" class="sign-user" aria-label="Sign in page">
                         <img src="{{ asset('ressources/user.svg') }}" alt="user-icon">
                     </a>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                    <div class="sign-btns">
+                        <button id="déco" type="button" class="btn-danger">Déconnexion</button>
+
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <button id="admin" type="button" class="btn-info">Administrateur</button>
+                      {% endif %}
+
+                    </div>
+                    {% else %}
                     <div class="sign-btns">
                         <button id="Connexion" type="button">Connexion</button>
                         <button id="Inscription" type="button">Inscription</button>
                     </div>
+                    {% endif %}
                 </div>
             </nav>
         {% endblock %}
@@ -78,6 +90,14 @@
 
         document.getElementById("Inscription").onclick = function () {
             location.href = "{{ path('inscription') }}";
+        };
+
+        document.getElementById("déco").onclick = function () {
+            location.href = "{{ path('app_logout') }}";
+        };
+
+        document.getElementById("admin").onclick = function () {
+            location.href = "{{ path('admin') }}";
         };
     </script>
     {% block js %}{% endblock %}

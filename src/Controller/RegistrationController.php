@@ -30,11 +30,17 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            $user->setDateAt(new \DateTimeImmutable);
             $entityManager->persist($user);
+
             $entityManager->flush();
             // do anything else you need here, like send an email
+            if($this->isGranted('ROLE_ADMIN'))
+            {
+             return $this->redirectToRoute('admin');
+            }
+            else return $this->redirectToRoute('casque');
 
-            return $this->redirectToRoute('casque');
         }
 
         return $this->render('registration/register.html.twig', [

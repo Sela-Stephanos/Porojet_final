@@ -3,5 +3,29 @@
 {% block css %}{% endblock %}
 
 {% block main %}
+    <section class="py-5 mt-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for c in casques %}
+                    <div class="col mb-2">
+                        <div class="card h-100" style="width: 14rem;">
+                            <img class="card-img-top" src="{{asset('images/casques/' ~ c.image) }}" alt="{{ c.name }}" />
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">{{ c.name }}</h5>
+                                    <p>{{ c.description }}</p>
+                                    <p style="font-weight: bold"> {{ c.price }} €</p>
+                                    <div class="row">
+                                        <div class="col-sm-6"><a href="" class="btn btn-dark"> Details</a> </div>
+                                        <div class="col-sm-6"> <a href="" class=" btn btn-dark"> ADD </a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 
 {% endblock %}

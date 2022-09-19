@@ -22,8 +22,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CasquesCrudController extends AbstractCrudController
 {
-    public const CASQUE_PATH = 'upload/images/casques';
-    public const CASQUE_DIR = 'public/images';
+    public const CASQUE_PATH = 'images/casques';
+    public const CASQUE_DIR = 'public/images/casques';
     public const DUPLICATE = 'duplicate';
 
     public static function getEntityFqcn(): string
