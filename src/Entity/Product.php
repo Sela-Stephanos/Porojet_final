@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CramponsRepository;
+use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CramponsRepository::class)]
-class Crampons
+#[ORM\Entity(repositoryClass: ProductRepository::class)]
+class Product
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -23,18 +23,17 @@ class Crampons
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'crampons')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Articles $article_type = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $updatedAt = null;
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updateAt = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?Category $type = null;
 
     public function getId(): ?int
     {
@@ -77,14 +76,14 @@ class Crampons
         return $this;
     }
 
-    public function getArticleType(): ?Articles
+    public function getImage(): ?string
     {
-        return $this->article_type;
+        return $this->image;
     }
 
-    public function setArticleType(?Articles $article_type): self
+    public function setImage(?string $image): self
     {
-        $this->article_type = $article_type;
+        $this->image = $image;
 
         return $this;
     }
@@ -101,26 +100,26 @@ class Crampons
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdateAt(): ?\DateTimeImmutable
     {
-        return $this->updatedAt;
+        return $this->updateAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setUpdateAt(?\DateTimeImmutable $updateAt): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updateAt = $updateAt;
 
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getType(): ?Category
     {
-        return $this->image;
+        return $this->type;
     }
 
-    public function setImage(?string $image): self
+    public function setType(?Category $type): self
     {
-        $this->image = $image;
+        $this->type = $type;
 
         return $this;
     }

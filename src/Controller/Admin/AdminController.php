@@ -2,10 +2,8 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Accessoires;
-use App\Entity\Casques;
-use App\Entity\Crampons;
-use App\Entity\Epauliere;
+use App\Entity\Category;
+use App\Entity\Product;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -26,7 +24,7 @@ class AdminController extends AbstractDashboardController
     public function index(): Response
     {
         $url = $this->adminUrlGenerator
-            ->setController(ArticlesCrudController::class)
+            ->setController(ProductCrudController::class)
             ->generateUrl();
 
          return $this->redirect($url);
@@ -35,36 +33,24 @@ class AdminController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('MÉTÉOR');
+            ->setTitle('MÉTÉORE');
     }
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::section('Casques');
+        yield MenuItem::linktoRoute('Retourner sur mon site ', 'fas fa-home', 'home');
+
+        yield MenuItem::section('Produits');
         yield MenuItem::subMenu('Gérer-Casques', 'fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Casques::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Voir', 'fas fa-eye', Casques::class)
+            MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Product::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir', 'fas fa-eye', Product::class)
         ]);
 
-        yield MenuItem::section('Accesoires');
+        yield MenuItem::section('Categories');
         yield MenuItem::subMenu('Gérer-accessoires', 'fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Accessoires::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Voir', 'fas fa-eye', Accessoires::class)
+            MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Category::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir', 'fas fa-eye', Category::class)
         ]);
-
-        yield MenuItem::section('Epaulières');
-        yield MenuItem::subMenu('Gérer-épaulières', 'fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Epauliere::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Voir', 'fas fa-eye', Epauliere::class)
-        ]);
-
-        yield MenuItem::section('Crampons');
-        yield MenuItem::subMenu('Gérer-Crampons', 'fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Crampons::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Voir', 'fas fa-eye', Crampons::class)
-        ]);
-
-
 
     }
 

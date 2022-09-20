@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Accessoires;
+use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -13,25 +13,23 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 
-class AccessoiresCrudController extends AbstractCrudController
+class ProductCrudController extends AbstractCrudController
 {
-    public const ACCESSOIRES_PATH = 'images/accessoires';
-    public const ACCESSOIRES_DIR = 'public/images/accessoires';
+    public const PRODUCT_PATH = 'images';
+    public const PRODUCT_DIR = 'public/images';
     public const DUPLICATE = 'duplicate';
 
     public static function getEntityFqcn(): string
     {
-        return Accessoires::class;
+        return Product::class;
     }
-
-    public function configureActions(Actions $actions): \EasyCorp\Bundle\EasyAdminBundle\Config\Actions
+    public function configureActions(\EasyCorp\Bundle\EasyAdminBundle\Config\Actions $actions): \EasyCorp\Bundle\EasyAdminBundle\Config\Actions
     {
         $duplicate = Action::new(self::DUPLICATE)
             ->linkToCrudAction('duplicateProduct')
@@ -41,8 +39,6 @@ class AccessoiresCrudController extends AbstractCrudController
         return $actions
             ->add(Crud::PAGE_EDIT, $duplicate);
     }
-
-
 
     public function configureFields(string $pageName): iterable
     {
@@ -54,11 +50,11 @@ class AccessoiresCrudController extends AbstractCrudController
             TextEditorField::new('description'),
 
             ImageField::new('image')
-                ->setBasePath(self::ACCESSOIRES_PATH)
-                ->setUploadDir(self::ACCESSOIRES_DIR)
+                ->setBasePath(self::PRODUCT_PATH)
+                ->setUploadDir(self::PRODUCT_DIR)
                 ->setSortable(false),
 
-            AssociationField::new('article_type'),
+            AssociationField::new('type'),
 
             DateTimeField::new('createdAt')->hideOnForm(),
             DateTimeField::new('updatedAt')->hideOnForm(),
@@ -67,7 +63,7 @@ class AccessoiresCrudController extends AbstractCrudController
 
     public function persistEntity(EntityManagerInterface $em, $ei): void
     {
-        if(!$ei Instanceof Accessoires) return;
+        if(!$ei Instanceof Product) return;
         $ei->setCreatedAt( new \DateTimeImmutable);
 
         parent::persistEntity($em, $ei);
@@ -76,7 +72,7 @@ class AccessoiresCrudController extends AbstractCrudController
     public function duplicate(AdminContext $context, EntityManagerInterface $em, AdminUrlGenerator $admin): Response
     {
         /**
-         * @var Accessoires $produit
+         * @var Product $produit
          */
         $produit = $context->getEntity()->getInstance();
         $duplicate = clone $produit;
@@ -89,5 +85,7 @@ class AccessoiresCrudController extends AbstractCrudController
 
         return $this->redirect($url);
     }
+
+
 
 }
