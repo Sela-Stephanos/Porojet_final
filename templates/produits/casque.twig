@@ -9,11 +9,10 @@
                 {% for c in casques %}
                     <div class="col mb-2">
                         <div class="card h-100" style="width: 14rem;">
-                            <img class="card-img-top" src="{{asset('images/casques/' ~ c.image) }}" alt="{{ c.name }}" />
+                            <img class="card-img-top" src="{{asset('images/' ~ c.image) }}" alt="{{ c.name }}" />
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <h5 class="fw-bolder">{{ c.name }}</h5>
-                                    <p>{{ c.description }}</p>
                                     <p style="font-weight: bold"> {{ c.price }} €</p>
                                     <div class="row">
                                         <div class="col-sm-6"><a href="" class="btn btn-dark"> Details</a> </div>
