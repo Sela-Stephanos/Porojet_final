@@ -27,6 +27,10 @@ main{
 p{
     text-align: center;   
 }
+.arriere{
+    opacity: 0.80;
+    z-index: -1;
+}
 aside{
     display: flex;
     justify-content: center;
