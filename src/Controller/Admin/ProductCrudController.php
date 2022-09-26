@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -14,7 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +30,7 @@ class ProductCrudController extends AbstractCrudController
     {
         return Product::class;
     }
-    public function configureActions(\EasyCorp\Bundle\EasyAdminBundle\Config\Actions $actions): \EasyCorp\Bundle\EasyAdminBundle\Config\Actions
+    public function configureActions(Actions $actions): Actions
     {
         $duplicate = Action::new(self::DUPLICATE)
             ->linkToCrudAction('duplicateProduct')
@@ -47,7 +48,7 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('name', "Nom de l'article"),
             MoneyField::new('price')->setCurrency('EUR'),
 
-            TextEditorField::new('description'),
+            TextareaField::new('description'),
 
             ImageField::new('image')
                 ->setBasePath(self::PRODUCT_PATH)
@@ -64,7 +65,7 @@ class ProductCrudController extends AbstractCrudController
     public function persistEntity(EntityManagerInterface $em, $ei): void
     {
         if(!$ei Instanceof Product) return;
-        $ei->setCreatedAt( new \DateTimeImmutable);
+        $ei->setCreatedAt( new DateTimeImmutable);
 
         parent::persistEntity($em, $ei);
     }

@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Exception;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,13 +38,13 @@ class ProduitsController extends AbstractController
         ]);
     }
 
-    #[Route('/details', name: 'detail')]
-    public function detail(): Response
+    #[Route('/details/{id}', name: 'detail')]
+    public function detail(ManagerRegistry $manager, $id): Response
     {
-        //$details = $repo->find($id);
+        $details = $manager->getRepository(Product::class)->find($id);
 
         return $this->render('produits/details.twig',[
-           //'details' => $details
+           'details' => $details
         ]);
     }
 }
