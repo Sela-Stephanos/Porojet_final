@@ -18,3 +18,8 @@ new ResizeObserver(entries => {
     navLinksContainer.style.transition = "none"
   }
 }).observe(document.body)
+
+
+
+const image = document.getElementById('imd')
+

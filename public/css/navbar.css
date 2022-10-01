@@ -111,13 +111,18 @@ body{
   background: url("../img/fon1.JPG") fixed no-repeat;
   background-size: cover;
 }
+footer{
+  min-height: 10vh;
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  width: 100%;
+}
 footer a{
-  position:fixed;
-  background: black;
+
   color: white;
   text-align: center;
-  bottom: 0;
-  width: 100%;
+
 }
 
 
