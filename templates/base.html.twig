@@ -38,7 +38,6 @@
                     <div class="navlinks-container">
                         <a href="{{ path('home') }}" aria-current="page"><i class='bx bxs-home' style='color:white'></i> </a>
                         <a href="{{ path('info') }}">CONTACT</a>
-                        <a href="{{ path('panier') }}"> <i class='bx bxs-shopping-bag' style='color:white' > </i> PANIER</a>
                         <div class="drop">
                             <a href="{{ path('casque') }}"><i class='bx bxs-store' style='color:white' ></i> BOUTIQUE</a>
                             <div class="content">
@@ -48,6 +47,13 @@
                                 <a href="">CRAMPONS</a>
                             </div>
                         </div>
+                        <form class="d-flex" action="{{ path('panier') }}" method="POST">
+                            <button class="btn btn-light" type="submit">
+                                <i class="bi-cart-fill me-1"></i>
+                                PANIER
+                                <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="nav-authentication">
