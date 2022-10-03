@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Product;
-use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PanierController extends AbstractController
 {
     #[Route('/panier', name: 'panier')]
-    public function index( SessionInterface $session, ManagerRegistry $manager): Response
+    public function index(SessionInterface $session): Response
     {
         $panier = $session->get('panier', []);
 
@@ -28,11 +28,13 @@ class PanierController extends AbstractController
 
         return $this->render('panier/panier.twig', [
             'controller_name' => 'PanierController',
+            'panier' => $panier,
+            'total' => $total
         ]);
     }
 
     #[Route('/panier/add/{id}/{origin}', name: 'panier_add')]
-    public function add(SessionInterface $session, Product $product, $origin)
+    public function add(SessionInterface $session, Product $product, $origin): RedirectResponse
     {
         $panier = $session->get('panier', []);
 
@@ -63,7 +65,7 @@ class PanierController extends AbstractController
         }
     }
     #[Route('/panier/delete/{id}/{origin}', name: 'panier_delete')]
-    public function delete(SessionInterface $session, $origin, Product $product)
+    public function delete(SessionInterface $session, $origin, Product $product): RedirectResponse
     {
         $panier = $session->get('panier', []);
 
@@ -78,6 +80,9 @@ class PanierController extends AbstractController
               'qte' => --$panier[$product->getId()]['qte']
             ];
         }
+        $session->set('panier', $panier);
+
+        return $this->redirectToRoute($origin);
 
     }
 }
