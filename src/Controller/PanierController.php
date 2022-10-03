@@ -63,8 +63,21 @@ class PanierController extends AbstractController
         }
     }
     #[Route('/panier/delete/{id}/{origin}', name: 'panier_delete')]
-    public function delete()
+    public function delete(SessionInterface $session, $origin, Product $product)
     {
+        $panier = $session->get('panier', []);
+
+        if($panier[$product->getId()] <= 1)
+        {
+            unset($panier[$product->getId()]);
+        }
+        else
+        {
+            $panier[$product->getId()] = [
+              'product' => $product,
+              'qte' => --$panier[$product->getId()]['qte']
+            ];
+        }
 
     }
 }
