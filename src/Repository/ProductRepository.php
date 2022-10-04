@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Exception;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -39,6 +40,24 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
+
+    /**
+     * @throws Exception
+     */
+    public function type($type):array
+    {
+        $con = $this->getEntityManager()->getConnection();
+
+        $sql= 'SELECT * FROM product p WHERE p.type_id = :type';
+
+        $stmt = $con->prepare($sql);
+
+        $resultSet = $stmt->executeQuery(['type' => $type]);
+
+        return $resultSet->fetchAllAssociative();
+
+
+    }
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */

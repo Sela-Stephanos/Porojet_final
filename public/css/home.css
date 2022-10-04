@@ -1,44 +1,79 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=DM+Serif+Display:ital@1&family=Kanit:ital,wght@0,500;1,400&family=Libre+Baskerville&family=Mingzat&family=Open+Sans&display=swap');
 /*********************************************************************************************/
-h1{
+h1 {
     text-align: center;
-    font-size: 5em;
+    font-size: 5rem;
     margin-top: 80px;
+    font-family: 'Bungee Spice', cursive;
 }
-h2{ text-align: center;
+
+h2 {
+    font-family: 'Bungee Spice', cursive;
+    text-align: center;
     font-size: 3em;
 }
-main{
-    padding: 7em 0;
-}
-#video{
+
+#video {
     display: flex;
     justify-content: center;
 }
-#description article{
+
+#description article {
     background: rgba(112, 110, 110, 0.5);
     box-shadow: 0 0 20px;
     width: 60%;
-    margin: auto;
     border-radius: 35px;
-    margin-top: 100px;
+    margin: 100px auto auto;
     color: white;
 }
-p{
-    text-align: center;   
+
+p {
+    text-align: center;
 }
-aside{
+
+figure img {
+    color: black;
+    border-radius: 15%;
+    box-shadow: 5px 5px 5px 5px;
+}
+
+figure img a {
+    z-index: -1;
+    position: absolute;
+}
+
+.arriere {
+    opacity: 0.90;
+    z-index: -1;
+}
+
+aside {
     display: flex;
     justify-content: center;
 }
-aside a{
+
+aside a {
     text-decoration: none;
     text-align: center;
     color: white;
     background: black;
     width: 8vw;
 }
-aside a:hover{
+
+aside a:hover {
     background: skyblue;
     color: gold;
+}
+
+@media screen and (max-width: 1000px) {
+    .phoo .container .row{
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+    img{
+        width: 450px;
+        height: 225px;
+    }
+
 }

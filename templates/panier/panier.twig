@@ -1,2 +1,60 @@
 {% extends 'base.html.twig' %}
 {% block title %}PANIER{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('css/panier.css') }}">
+{% endblock %}
+{% block main %}
+    <h2 class="text-center"> Finalisez vos achats </h2>
+    {% if panier is not empty %}
+        <section class="">
+            <div class="container tableau mt-5">
+                <table class="table table-light text-center panier">
+                    <thead>
+                    <tr>
+                        <th scope="col">Produit</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">  </th>
+                    </tr>
+                    </thead>
+                    <tbody class="table table-dark">
+                    {% for p in panier %}
+                        <tr>
+                            <th scope="row"> {{ p.product.name }}</th>
+                            <td>{{ p.qte }}</td>
+                            <td>{{ (p.product.price * p.qte) | format_currency('EUR', locale='fr')}}</td>
+                            <td>
+                                <div class="row d-flex w-50">
+                                    <div class="col-sm-6 d-flex justify-content-center">
+                                        <a href="{{ path('panier_add',{ id : p.product.id, origin : app.request.attributes.get('_route') } ) }}"
+                                                class=" btn btn-primary"><i class="bi bi-plus-circle"></i></a>
+                                    </div>
+                                    <div class="col-sm-6 d-flex justify-content-center">
+                                        <a href="{{ path('panier_delete',{ id : p.product.id, origin : app.request.attributes.get('_route') } ) }}"
+                                                class=" btn btn-danger"><i class=" bi bi-trash"></i></a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    <tr>
+                        <td colspan="3" class="text-center">TOTAL: {{ total | format_currency('EUR', locale='fr') }} </td>
+                        <td colspan="3" class="text-center"><a href="{{ path('buy') }}" class="btn btn-outline-light w-50">PAYER</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    {% else %}
+
+        <section>
+            <div class="container">
+                <h2>
+                    Votre panier est vide
+                </h2>
+            </div>
+        </section>
+    {% endif %}
+
+{% endblock %}

@@ -1,106 +1,113 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>{% block title %} MÉTÉORE {% endblock %}</title>
-        <link rel="stylesheet" href="css/bootstrap.css"/>
-        <link rel="stylesheet" href="css/navbar.css"/>
-        <link rel="stylesheet" href="css/home.css"/>
-        {% block css %}{% endblock %}
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-        <link
-                href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Flex:opsz,wght@8..144,100;8..144,300;8..144,500;8..144,700;8..144,900&display=swap"
-                rel="stylesheet"
-        />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %} MÉTÉORE {% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}"/>
+    {% block css %}{% endblock %}
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Flex:opsz,wght@8..144,100;8..144,300;8..144,500;8..144,700;8..144,900&display=swap"
+            rel="stylesheet"
+    />
 
-    </head>
-    <body>
-    <header>
-        {% block nav %}
+</head>
+<body>
+<header>
+    {% block nav %}
 
 
-            <nav>
-                <a href="#" class="nav-icon" aria-label="visit homepage" aria-current="page">
-                    <img src="{{asset('ressources/logo.JPG')}}" alt="chat icon">
-                    <!--<span>EverChat</span> -->
-                </a>
+        <nav>
+            <a href="#" class="nav-icon" aria-label="visit homepage" aria-current="page">
+                <img src="{{ asset('ressources/logo.JPG') }}" alt="chat icon">
+                <!--<span>EverChat</span> -->
+            </a>
 
-                <div class="main-navlinks">
-                    <button class="hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    <div class="navlinks-container">
-                        <a href="{{ path('home') }}" aria-current="page"><i class='bx bxs-home' style='color:white'></i> </a>
-                        <a href="{{ path('info') }}">CONTACT</a>
-                        <a href="{{ path('panier') }}"> <i class='bx bxs-shopping-bag' style='color:white' > </i> PANIER</a>
-                        <div class="drop">
-                            <a href="{{ path('casque') }}"><i class='bx bxs-store' style='color:white' ></i> BOUTIQUE</a>
-                            <div class="content">
-                                <a href="">CASQUES</a>
-                                <a href="">ACCESOIRES</a>
-                                <a href="">EPAULIÈRES</a>
-                                <a href="">CRAMPONS</a>
-                            </div>
+            <div class="main-navlinks">
+                <button class="hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="navlinks-container">
+                    <a href="{{ path('home') }}" aria-current="page"><i class='bx bxs-home' style='color:white'></i>
+                    </a>
+                    <a href="{{ path('info') }}">CONTACT</a>
+                    <div class="drop">
+                        <a href="{{ path('casque') }}"><i class='bx bxs-store' style='color:white'></i> BOUTIQUE</a>
+                        <div class="content">
+                            <a href="{{ path('casque') }}">CASQUES</a>
+                            <a href="{{ path('acc') }}">ACCESSOIRES</a>
+                            <a href="">ÉPAULIÈRES</a>
+                            <a href="">CRAMPONS</a>
                         </div>
                     </div>
+                    <form class="d-flex" action="{{ path('panier') }}" method="POST">
+                        <button class="btn btn-light" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                            PANIER
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        </button>
+                    </form>
                 </div>
-                <div class="nav-authentication">
-                    <a href="#" class="sign-user" aria-label="Sign in page">
-                        <img src="{{ asset('ressources/user.svg') }}" alt="user-icon">
-                    </a>
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            </div>
+            <div class="nav-authentication">
+                <a href="#" class="sign-user" aria-label="Sign in page">
+                    <img src="{{ asset('ressources/user.svg') }}" alt="user-icon">
+                </a>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
                     <div class="sign-btns">
                         <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
 
                         {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('admin') }}" class="btn btn-info">Administrateur</a>
-                      {% endif %}
+                            <a href="{{ path('admin') }}" class="btn btn-info">Administrateur</a>
+                        {% endif %}
 
                     </div>
-                    {% else %}
+                {% else %}
                     <div class="sign-btns">
                         <button id="Connexion" type="button">Connexion</button>
 
                         <button id="Inscription" type="button">Inscription</button>
                     </div>
-                    {% endif %}
-                </div>
-            </nav>
-        {% endblock %}
-    </header>
+                {% endif %}
+            </div>
+        </nav>
+    {% endblock %}
+</header>
 
-    <main>
-        {% block main %} {% endblock %}
-    </main>
-    <footer>
-        <a href="#">&copy; Météore de Fontenay</a>
-    </footer>
-    <script src="script.js"></script>
-    <script>
-        document.getElementById("Connexion").onclick = function () {
-            location.href = "{{ path('connexion') }}";
-        };
+<main>
+    {% block main %} {% endblock %}
+</main>
+<footer>
+    <a href="#">&copy; Météore de Fontenay</a>
+</footer>
+<script src="script.js"></script>
+<script>
+    document.getElementById("Connexion").onclick = function () {
+        location.href = "{{ path('connexion') }}";
+    };
 
-        document.getElementById("Inscription").onclick = function () {
-            location.href = "{{ path('inscription') }}";
-        };
+    document.getElementById("Inscription").onclick = function () {
+        location.href = "{{ path('inscription') }}";
+    };
 
-        document.getElementById("déco").onclick = function () {
-            location.href = "{{ path('app_logout') }}";
-        };
+    document.getElementById("déco").onclick = function () {
+        location.href = "{{ path('app_logout') }}";
+    };
 
-        document.getElementById("admin").onclick = function () {
-            location.href = "{{ path('admin') }}";
-        };
-    </script>
-    {% block js %}{% endblock %}
-    </body>
+    document.getElementById("admin").onclick = function () {
+        location.href = "{{ path('admin') }}";
+    };
+</script>
+{% block js %}{% endblock %}
+</body>
 </html>

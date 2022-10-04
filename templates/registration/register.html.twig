@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Inscription{% endblock %}
-{% block css %}<link rel="stylesheet" href="css/form.css"/>{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">{% endblock %}
 {% block main %}
     <section class="formulaire-inscription">
         <div class="container">
@@ -39,7 +40,7 @@
                     }) }}</div>
             </div>
         {{ form_row(registrationForm.agreeTerms) }}
-        <button type="submit" class="btn btn-primary" style="text-align: center">S'inscrire </button>
+        <button type="submit" class="btn btn-primary w-100 mb-4" style="text-align: center">S'inscrire </button>
         {{ form_end(registrationForm) }}
         </div>
     </section>
