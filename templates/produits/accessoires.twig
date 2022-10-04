@@ -16,7 +16,7 @@
                                     <p style="font-weight: bold"> {{ c.price }} €</p>
                                     <div class="row">
                                         <div class="col-sm-6"><a href="{{ path('detail' , {id: c.id}) }}" class="btn btn-outline-dark"> Details</a> </div>
-                                        <div class="col-sm-6"> <a href="" class=" btn btn-outline-dark"><i class="bi-cart-fill me-1"></i>Ajouter </a>
+                                        <div class="col-sm-6"> <a href="{{ path('panier_add',{ id : c.id, origin : app.request.attributes.get('_route') } ) }}" class=" btn btn-outline-primary"><i class="bi-cart-fill me-1"></i></a>
 
                                         </div>
                                     </div>

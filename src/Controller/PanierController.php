@@ -21,7 +21,7 @@ class PanierController extends AbstractController
         if(!empty($panier))
         {
             foreach ($panier as  $value) {
-                $total += $value['produit']->getPrix() * $value['qte'];
+                $total += $value['product']->getPrice() * $value['qte'];
             }
         }
         $session->set('total', [$total]);
@@ -38,20 +38,24 @@ class PanierController extends AbstractController
     {
         $panier = $session->get('panier', []);
 
-        if(!empty($panier[$product->getId()]))
+        if(!empty($panier["".$product->getId()]))
         {
-            $panier[$product->getId()] = [
-                'product' => $product ,
-                'qte' => 1
+            $panier["".$product->getId()] = [
+                'product' => $product,
+                'qte' => ++$panier["".$product->getId()]['qte']
+
             ];
         }
         else
         {
-            $panier[$product->getId()] = [
-                'product' => $product,
-                'qte' => ++$panier[$product->getId()]['qte']
+
+            $panier["".$product->getId()] = [
+                'product' => $product ,
+                'qte' => 1
             ];
         }
+
+
 
         $session->set('panier', $panier);
 
