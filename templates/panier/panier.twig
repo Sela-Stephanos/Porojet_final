@@ -1,14 +1,19 @@
 {% extends 'base.html.twig' %}
 {% block title %}PANIER{% endblock %}
-{% block css %}
-    <link rel="stylesheet" href="{{ asset('css/panier.css') }}">
-{% endblock %}
 {% block main %}
-    <h2 class="text-center"> Finalisez vos achats </h2>
     {% if panier is not empty %}
-        <section class="">
+        {% for msg in app.flashes('delete') %}
+            <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                <strong> {{ msg }} </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        <div class="panier-tille">
+            <h2 class="text-center"> Finalisez vos achats </h2>
+        </div>
+        <section class="panier-container">
             <div class="container tableau mt-5">
-                <table class="table table-light text-center panier">
+                <table class="table text-center">
                     <thead>
                     <tr>
                         <th scope="col">Produit</th>
@@ -17,7 +22,7 @@
                         <th scope="col">  </th>
                     </tr>
                     </thead>
-                    <tbody class="table table-dark">
+                    <tbody class="table">
                     {% for p in panier %}
                         <tr>
                             <th scope="row"> {{ p.product.name }}</th>
@@ -40,7 +45,7 @@
 
                     <tr>
                         <td colspan="3" class="text-center">TOTAL: {{ total | format_currency('EUR', locale='fr') }} </td>
-                        <td colspan="3" class="text-center"><a href="{{ path('buy') }}" class="btn btn-outline-light w-50">PAYER</a></td>
+                        <td colspan="3" class="text-center"><a href="{{ path('buy') }}" class="btn btn-success">PAYER</a></td>
                     </tr>
                     </tbody>
                 </table>

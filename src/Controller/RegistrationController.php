@@ -42,7 +42,6 @@ class RegistrationController extends AbstractController
             else return $this->redirectToRoute('casque');
 
         }
-
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);

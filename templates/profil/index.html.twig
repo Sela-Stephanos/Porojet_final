@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} PROFIL {% endblock %}
+{% block nav %} {% endblock %}
+
+{% block main %}
+    <section class="profil">
+        <ul>
+            <li><a href="{{ path('app_information', {id: app.user.id})}}">MES INFORMATIONS</a></li>
+            <li><a href="#">MES COMMANDES</a></li>
+            <li><a href="{{ path('home') }}">HOME</a></li>
+            <li><a href="{{ path('info') }}">CONTACT</a></li>
+            <li><a href="{{ path('casque') }}">BOUTIQUE</a></li>
+            <li><a href="{{ path('panier') }}">PANIER</a></li>
+            <li><a href="{{ path('app_logout') }}">DÉCONNEXION</a></li>
+        </ul>
+        <div class="compte">
+            <h3><p> BIENVENU SUR VOTRE ESPACE CLIENT</p></h3>
+            <h4><p>{{ app.user.nom }}</p></h4>
+        </div>
+
+        <div class="profil-content">
+            {% block content %}
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad aut autem beatae cupiditate
+            distinctio doloremque error et eum excepturi fugit impedit magnam molestias nesciunt numquam obcaecati
+            officia placeat qui quibusdam quidem quos sed, voluptate? Blanditiis corporis, cumque debitis deleniti
+            distinctio dolor dolorum eos esse ex exercitationem explicabo facilis fuga hic in incidunt inventore ipsum
+            iste itaque labore laboriosam laborum laudantium maiores maxime molestiae necessitatibus nobis non porro
+            praesentium provident quas quidem ratione reiciendis repellat, tempora tenetur vel voluptates. A aliquam,
+            amet beatae culpa deleniti dolores, et illo illum iure iusto neque officiis possimus provident qui ratione,
+            soluta tenetur voluptates!
+            {% endblock %}
+        </div>
+
+    </section>
+{% endblock %}

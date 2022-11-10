@@ -3,6 +3,12 @@
 {% block css %}{% endblock %}
 
 {% block main %}
+    {% for msg in app.flashes('add') %}
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            <strong> Felicitation ! {{ msg }} </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
     <section class="py-5 mt-5">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">

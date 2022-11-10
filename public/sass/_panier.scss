@@ -1,0 +1,17 @@
+.panier-title{
+
+  h2{
+    margin-top: 50px;
+  }
+}
+
+.panier-container{
+  .tableau{
+    display: flex;
+    justify-content: center;
+    background: #FFFFFF;
+    table{
+      border: 1px solid #FFFFFF;
+    }
+  }
+}

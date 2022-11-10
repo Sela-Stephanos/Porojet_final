@@ -1,0 +1,43 @@
+{
+  "name": "dwmma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "binary-extensions": "^2.2.0",
+    "braces": "^3.0.2",
+    "anymatch": "^3.1.2",
+    "glob-parent": "^5.1.2",
+    "fill-range": "^7.0.1",
+    "fsevents": "^2.3.2",
+    "immutable": "^4.1.0",
+    "is-extglob": "^2.1.1",
+    "is-glob": "^4.0.3",
+    "is-binary-path": "^2.1.0",
+    "is-number": "^7.0.0",
+    "picomatch": "^2.3.1",
+    "readdirp": "^3.6.0",
+    "normalize-path": "^3.0.0",
+    "sass": "^1.55.0",
+    "to-regex-range": "^5.0.1",
+    "source-map-js": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "sass": "sass --watch public/sass/index.scss public/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sela-Stephanos/Porojet_final.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sela-Stephanos/Porojet_final/issues"
+  },
+  "homepage": "https://github.com/Sela-Stephanos/Porojet_final#readme"
+}

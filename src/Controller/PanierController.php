@@ -43,21 +43,19 @@ class PanierController extends AbstractController
             $panier["".$product->getId()] = [
                 'product' => $product,
                 'qte' => ++$panier["".$product->getId()]['qte']
-
             ];
         }
         else
         {
-
             $panier["".$product->getId()] = [
                 'product' => $product ,
                 'qte' => 1
             ];
         }
 
-
-
         $session->set('panier', $panier);
+
+        $this->addFlash('add', "Votre article a été ajouté au panier avec succès");
 
         if ($origin == "detail")
         {
@@ -68,14 +66,16 @@ class PanierController extends AbstractController
             return $this->redirectToRoute($origin);
         }
     }
+
     #[Route('/panier/delete/{id}/{origin}', name: 'panier_delete')]
     public function delete(SessionInterface $session, $origin, Product $product): RedirectResponse
     {
         $panier = $session->get('panier', []);
 
-        if($panier[$product->getId()] <= 1)
+        if($panier[$product->getId()]['qte'] <= 1)
         {
             unset($panier[$product->getId()]);
+
         }
         else
         {
@@ -85,7 +85,7 @@ class PanierController extends AbstractController
             ];
         }
         $session->set('panier', $panier);
-
+        $this->addFlash('delete', 'Votre article a été retiré du pnaier...');
         return $this->redirectToRoute($origin);
 
     }
