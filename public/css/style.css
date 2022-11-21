@@ -123,4 +123,11 @@
   margin-left: 2em;
 }
 
+.product {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
 /*# sourceMappingURL=style.css.map */

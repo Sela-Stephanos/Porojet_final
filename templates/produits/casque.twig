@@ -9,10 +9,10 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     {% endfor %}
-    <section class="py-5 mt-5">
+    <section class="product">
+        {% for c in casques %}
         <div class="container px-4 px-lg-5 mt-5">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                {% for c in casques %}
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 <div class="col mb-2">
                     <div class="card h-100" style="width: 15rem;">
                         <img class="card-img-top" src="{{ asset('images/' ~ c.image) }}" alt="{{ c.name }}"/>
@@ -31,10 +31,10 @@
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
+        {% endfor %}
     </section>
 
 {% endblock %}

@@ -25,6 +25,7 @@
                     <tbody class="table">
                     {% for p in panier %}
                         <tr>
+                            <th><img src="{{ asset('images/' ~ p.product.image) }}" alt="{{ p.product.name }}" style="height: 50px; width: 50px"></th>
                             <th scope="row"> {{ p.product.name }}</th>
                             <td>{{ p.qte }}</td>
                             <td>{{ (p.product.price * p.qte) | format_currency('EUR', locale='fr')}}</td>
@@ -45,11 +46,12 @@
 
                     <tr>
                         <td colspan="3" class="text-center">TOTAL: {{ total | format_currency('EUR', locale='fr') }} </td>
-                        <td colspan="3" class="text-center"><a href="{{ path('buy') }}" class="btn btn-success">PAYER</a></td>
+                        <td colspan="3" class="text-center"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+            <a href="{{ path('buy') }}" class="btn btn-success w-25">PAYER</a>
         </section>
     {% else %}
 
