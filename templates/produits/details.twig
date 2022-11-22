@@ -26,7 +26,6 @@
                 </div>
                 <p class="lead">{{ details.description }}</p>
                 <div class="d-flex">
-                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
                     <a href="{{ path('panier_add',{ id : details.id, origin : app.request.attributes.get('_route') } ) }}" class="btn btn-outline-dark flex-shrink-0" type="button">
                         <i class="bi-cart-fill me-1"></i>
                         Ajouter au panier
