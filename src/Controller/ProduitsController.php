@@ -29,12 +29,41 @@ class ProduitsController extends AbstractController
     /**
      * @throws Exception
      */
+    #[Route('/epauliere', name: 'epauliere')]
+    public function epaulier(ProductRepository $repo): Response
+    {
+
+        $ep =$repo->type(3);
+
+        return $this->render('produits/epauliere.twig', [
+            'ep' => $ep
+        ]);
+    }
+
+    /**
+     * @throws Exception
+     */
+    #[Route('/crampons', name: 'crampons')]
+    public function crampon(ProductRepository $repo): Response
+    {
+
+        $cr =$repo->type(4);
+
+        return $this->render('produits/crampons.twig', [
+            'cr' => $cr
+        ]);
+    }
+
+
+    /**
+     * @throws Exception
+     */
     #[Route('/accessoires', name: 'acc')]
     public function accessoires(ProductRepository $repo): Response
     {
         $acc = $repo->type(2);
         return $this->render('produits/accessoires.twig',[
-            'accessoires' =>$acc
+            'accessoires' => $acc
         ]);
     }
 

@@ -90,6 +90,7 @@ nav .drop .content{
 }
 nav .drop {
   position: relative;
+  z-index: 1;
 }
 nav .drop:hover .content{
   display: flex;

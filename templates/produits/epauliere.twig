@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+{% block title %} BOUTIQUE {% endblock %}
+{% block css %}{% endblock %}
+
+{% block main %}
+    {% for msg in app.flashes('add') %}
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            <strong> Felicitation ! {{ msg }} </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+    <section class="product">
+        {% for c in ep %}
+            <div class="container">
+                <div class="row ">
+                    <div class="col mb-4">
+                        <div class="card h-100" style="width: 15rem;">
+                            <img class="card-img-top" src="{{ asset('images/' ~ c.image) }}" alt="{{ c.name }}"/>
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">{{ c.name }}</h5>
+                                    <p style="font-weight: bold"> {{ c.price }} €</p>
+                                    <div class="row">
+                                        <div class="col-sm-6"><a href="{{ path('detail' , {id: c.id}) }}"
+                                                                 class="btn btn-outline-dark"> Details</a></div>
+                                        <div class="col-sm-6"><a
+                                                    href="{{ path('panier_add',{ id : c.id, origin : app.request.attributes.get('_route') } ) }}"
+                                                    class=" btn btn-outline-primary"><i class="bi-cart-fill me-1"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+
+{% endblock %}
