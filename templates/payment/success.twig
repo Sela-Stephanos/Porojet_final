@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-
+{% block main %}
+<section>
+    <h2><p> Votre commande référencée "{{ commande.reference}}" a bien été prise en compte, merci {{ app.user.nom }} ! </p></h2>
+</section>
 {% endblock %}
 
 

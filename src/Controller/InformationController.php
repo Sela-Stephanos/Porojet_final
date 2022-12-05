@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Form\UpdateType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,7 +18,7 @@ class InformationController extends AbstractController
     {
         $user = $manager->getRepository(User::class)->find($id);
 
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(UpdateType::class, $user);
         $form->handleRequest($Re);
 
         if($form->isSubmitted() && $form->isValid()){

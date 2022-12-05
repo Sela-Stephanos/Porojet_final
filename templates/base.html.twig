@@ -60,13 +60,14 @@
                 </div>
             </div>
             <div class="nav-authentication">
-                <a href="#" class="sign-user" aria-label="Sign in page">
+                <a href="{{ path('profil') }}" class="sign-user" aria-label="Sign in page">
                     <img src="{{ asset('ressources/user.svg') }}" alt="user-icon">
                 </a>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
                     <div class="sign-btns">
-                        <a href="{{ path('profil') }}" class="btn btn-warning">MON PROFIL</a>
+                        <a href="{{ path('profil') }}" class="btn btn-close-white"><i class=" bx bxs-user"></i>
+                            {{ app.user.nom }}</a>
                         <a href="{{ path('app_logout') }}" class="btn btn-danger">DÉCONNEXION</a>
 
 
@@ -92,7 +93,15 @@
 </main>
 {% block footer %}
 <footer>
+    <aside>
+        <h4>Contact US </h4>
+        <p>01 01 01 01 01</p>
+        <p>météore@admin.fr</p>
+        <p>9 rue de Rosny, Fontenay-sous-bois, 94120</p>
+    </aside>
     <a href="#">&copy; Météore de Fontenay</a>
+    <a href="{{ asset('img/mentions/CGU.jpg') }}" target="_blank">CGU</a>
+    <a href="{{ asset('img/mentions/Votre-document.jpg') }}" target="_blank">Mentions Légale</a>
 </footer>
 {% endblock %}
 <script src="{{ asset('js/script.js') }}"></script>

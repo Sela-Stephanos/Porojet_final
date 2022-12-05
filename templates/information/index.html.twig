@@ -2,12 +2,11 @@
 
 {% block content %}
         {{ form_start(form) }}
-        <h3>Informations personnelle</h3>
         <div class="row">
-            <div class="col-sm-6">{{ form_row(form.nom, {
+            <div class="col-sm-6">{{ form_row(form.Nom, {
                     label: 'Nom'
                 }) }}</div>
-            <div class="col-sm-6">  {{ form_row(form.prenom, {
+            <div class="col-sm-6">  {{ form_row(form.Prenom, {
                     label: 'Prenom'
                 }) }} </div>
         </div>
@@ -18,11 +17,21 @@
         <h3>Coordonnées de Livraison</h3>
 
         <div class="row">
-
+            <div class="col-sm-4"> {{ form_row(form.adresse, {
+                    label: 'Adresse'
+                }) }}</div>
             <div class="col-sm-4"> {{ form_row(form.ville, {
                     label: 'Ville'
                 }) }}</div>
 
-        <button type="submit" class="btn btn-primary w-100 mb-4" style="text-align: center"> MODIFIÉ </button>
+            <div class="col-sm-4"> {{ form_row(form.CP, {
+                    label: 'Code Postale'
+                }) }}</div>
+
+    </div>
+
+        <button type="submit" class="btn btn-primary w-100 mb-4 mt-5" style="text-align: center"> MODIFIER </button>
+
+
         {{ form_end(form) }}
 {% endblock %}

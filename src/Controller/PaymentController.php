@@ -3,6 +3,7 @@
 namespace App\Controller;
 use App\Entity\Order;
 use App\Entity\User;
+use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use http\Env;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -56,7 +57,7 @@ class PaymentController extends AbstractController
 
         $articles = [];
 
-        $session = Session::create([
+        $sessionStripe = Session::create([
             'line_items' => [ $cube($panier)],
             'mode' => 'payment',
             'customer_email' => $this->getUser()->getEmail(),
@@ -67,15 +68,16 @@ class PaymentController extends AbstractController
                 'allowed_countries' => ['FR']
             ]
         ]);
+        $session->set('SessionId',$sessionStripe->id);
 
-        return $this->redirect($session->url, 303);
+        return $this->redirect($sessionStripe->url, 303);
     }
 
     /**
      * @throws ApiErrorException
      */
     #[Route('/buy/success', name: 'success')]
-    public function success(SessionInterface $session, \Doctrine\Persistence\ManagerRegistry $doctrine): Response
+    public function success(SessionInterface $session, \Doctrine\Persistence\ManagerRegistry $doctrine, OrderRepository $re): Response
     {
         $panier = $session->get('panier', []);
         $qte = 0;
@@ -89,7 +91,7 @@ class PaymentController extends AbstractController
 
             $client = new StripeClient($this->getParameter("stripeSk"));
 
-            $result = $client->checkout->sessions->retrieve($lastOrder, []);
+            $result = $client->checkout->sessions->retrieve($session->get('SessionId'), []);
 
             $adressLivraison = $result->customer_details->address;
             $emailLivraison = $result->customer_details->email;
@@ -119,8 +121,13 @@ class PaymentController extends AbstractController
             $em->persist($order);
             $em->flush();
 
+            $commande = $re->findAll();
+
+            dd($commande);
+
         return $this->render('payment/success.twig', [
-            'panier'=>$panier
+            'panier'=> $panier,
+            'commande' => $commande
         ]);
     }
 

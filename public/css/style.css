@@ -70,6 +70,11 @@
   max-height: 95vh;
   position: relative;
 }
+@media screen and (max-width: 900px) {
+  .home-main .home-div img {
+    height: 100vh;
+  }
+}
 
 .panier-title h2 {
   margin-top: 50px;
@@ -128,6 +133,17 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
+}
+
+@media screen and (max-width: 900px) {
+  .product {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-items: center;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

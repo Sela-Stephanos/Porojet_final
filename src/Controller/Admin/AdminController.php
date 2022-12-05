@@ -41,13 +41,13 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linktoRoute('Retourner sur mon site ', 'fas fa-home', 'home');
 
         yield MenuItem::section('Produits');
-        yield MenuItem::subMenu('Gérer-Casques', 'fas fa-bars')->setSubItems([
+        yield MenuItem::subMenu('Gérer les produits', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Product::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir', 'fas fa-eye', Product::class)
         ]);
 
         yield MenuItem::section('Categories');
-        yield MenuItem::subMenu('Gérer-accessoires', 'fas fa-bars')->setSubItems([
+        yield MenuItem::subMenu('Gérer les catégories', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Category::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir', 'fas fa-eye', Category::class)
         ]);

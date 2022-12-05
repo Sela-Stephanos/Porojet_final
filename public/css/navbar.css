@@ -4,6 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Roboto Thin", sans-serif;
 }
 nav {
   width: 100%;
@@ -135,6 +136,7 @@ footer a{
   nav {
     padding: 15px 20px;
     position: relative;
+    z-index: 1;
   }
   .nav-icon {
     order: 2;
