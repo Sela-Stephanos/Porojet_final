@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4f9d63c3-22dc-4450-840d-dac465a5a79c" name="meteore" url="http://access943718890.webspace-data.io">
+        <fileTransfer accessType="SFTP" host="access943718890.webspace-data.io" port="22" sshConfigId="09e1b788-72c2-4c6a-b15b-e204ba1f964c" sshConfig="u110431973@access943718890.webspace-data.io:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
