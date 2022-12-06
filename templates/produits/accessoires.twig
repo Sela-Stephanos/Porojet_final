@@ -3,11 +3,17 @@
 {% block css %}{% endblock %}
 
 {% block main %}
-    <section class="py-5 mt-5">
-        <div class="container px-4 px-lg-5 mt-5">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" style="border-radius: 30px">
-                {% for c in accessoires %}
-                    <div class="col mb-2">
+    {% for msg in app.flashes('add') %}
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            <strong> Felicitation ! {{ msg }} </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+    <section class="product">
+        {% for c in accessoires %}
+        <div class="container boutique">
+            <div class="row" style="border-radius: 30px">
+                    <div class="col-mb-4">
                         <div class="card h-100" style="width: 15rem;">
                             <img class="card-img-top" src="{{asset('images/' ~ c.image) }}" alt="{{ c.name }}" />
                             <div class="card-body p-4">
@@ -24,9 +30,9 @@
                             </div>
                         </div>
                     </div>
-                {% endfor %}
             </div>
         </div>
+        {% endfor %}
     </section>
 
 {% endblock %}

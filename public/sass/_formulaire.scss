@@ -1,0 +1,78 @@
+$meteor-1 : #CB532D;
+$meteor-2 : #E8A33E;
+$white : #FFFFFF;
+
+.formulaire-inscription{
+  width: auto;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  border-radius: 10px;
+
+  form{
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  button{
+    font-size: 2rem;
+    padding: 15px;
+    font-weight: bold;
+    background-color: $meteor-1;
+    border: none;
+  }
+  button:hover{
+    background-color: $meteor-2;
+  }
+
+}
+.connexion{
+  background-color: white;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+
+  form{
+    text-align: center;
+  }
+  label{
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  button{
+    background-color: $meteor-1;
+    border: none;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 30px;
+  }
+  button:hover{
+    background-color: $meteor-2;
+  }
+}
+
+.contact{
+  form{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    textarea{
+      height: 150px;
+    }
+  }
+
+  button{
+    background-color: $meteor-1;
+    border: none;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 30px;
+  }
+  button:hover{
+    background-color: $meteor-2;
+  }
+
+}
+

@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
+    {% for msg in app.flashes('add') %}
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            <strong> Felicitation ! {{ msg }} </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center" style="background-color: white; border-radius: 30px">
@@ -20,11 +26,10 @@
                 </div>
                 <p class="lead">{{ details.description }}</p>
                 <div class="d-flex">
-                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                    <a href="{{ path('panier_add',{ id : details.id, origin : app.request.attributes.get('_route') } ) }}" class="btn btn-outline-dark flex-shrink-0" type="button">
                         <i class="bi-cart-fill me-1"></i>
                         Ajouter au panier
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

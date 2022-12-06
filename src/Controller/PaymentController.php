@@ -3,6 +3,7 @@
 namespace App\Controller;
 use App\Entity\Order;
 use App\Entity\User;
+use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use http\Env;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -33,7 +34,7 @@ class PaymentController extends AbstractController
      * @throws ApiErrorException
      */
     #[Route('buy', name: 'buy')]
-    public function checkout(ProductRepository $repo, SessionInterface $session): RedirectResponse
+    public function checkout(SessionInterface $session): RedirectResponse
     {
         $cube = function ($paniers){
             $result = [];
@@ -56,7 +57,7 @@ class PaymentController extends AbstractController
 
         $articles = [];
 
-        $session = Session::create([
+        $sessionStripe = Session::create([
             'line_items' => [ $cube($panier)],
             'mode' => 'payment',
             'customer_email' => $this->getUser()->getEmail(),
@@ -67,66 +68,69 @@ class PaymentController extends AbstractController
                 'allowed_countries' => ['FR']
             ]
         ]);
+        $session->set('SessionId',$sessionStripe->id);
 
-        return $this->redirect($session->url, 303);
+        return $this->redirect($sessionStripe->url, 303);
     }
 
     /**
      * @throws ApiErrorException
      */
     #[Route('/buy/success', name: 'success')]
-    public function success(SessionInterface $session, ManagerRegistry $doctrine): Response
+    public function success(SessionInterface $session, \Doctrine\Persistence\ManagerRegistry $doctrine, OrderRepository $re): Response
     {
         $panier = $session->get('panier', []);
         $qte = 0;
 
-        foreach ($panier as $key => $value){
+        foreach ($panier as $key => $value) {
             $qte += $value['qte'];
         }
         $total = $session->get('total', []);
+
         $lastOrder = $session->get('lastorder', []);
 
-        if(empty($lastOrder)) $this->redirectToRoute('home');
+            $client = new StripeClient($this->getParameter("stripeSk"));
 
-        $client = new StripeClient($this->getParameter("stripeSk"));
-        $result = $client->checkout->sessions->retrieve($lastOrder[0]);
-        $adressLivraison = $result->customer_details->address;
-        $emailLivraison = $result->customer_details->email;
-        $nameLivraison = $result->customer_details->name;
-        $adressDetail = $result->shipping_details->address;
-        $nameDetail = $result->shipping_details->name;
-        $reference = chr(substr("000" . (rand(1, 9) + 65), -3)).rand(1000,9999);
+            $result = $client->checkout->sessions->retrieve($session->get('SessionId'), []);
 
-        $order = new Order();
-        $em = $doctrine->getManager();
+            $adressLivraison = $result->customer_details->address;
+            $emailLivraison = $result->customer_details->email;
+            $nameLivraison = $result->customer_details->name;
+            $adressDetail = $result->shipping_details->address;
+            $nameDetail = $result->shipping_details->name;
 
-        $order->setPanier($panier);
-        $order->setReference($reference);
-        $order->setTotal($total[0]);
-        $order->setCreatedAt( new \DateTimeImmutable);
-        $order->setUser($this->getUser());
-        $order->setAadresseFacturation($adressLivraison);
-        $order->setAadresseLivraison($adressDetail);
-        $order->setNameFacturation($nameDetail);
-        $order->setNameLivraison($nameLivraison);
-        $order->setEmail($emailLivraison);
-        $order->setState(false);
-        $order->setStateSending('en cours');
-        $order->setQuantity($qte);
+            $reference = chr(substr("000" . (rand(1, 9) + 65), -3)) . rand(1000, 9999);
 
-        $em->persist($order);
-        $em->flush();
+            $order = new Order();
+            $em = $doctrine->getManager();
 
-        return $this->render('payment/succes.twig', [
-            'panier'=>$panier,
-            'adresseL' => $adressLivraison,
-            'emailLiv' => $emailLivraison,
-            'adresseD' => $adressDetail,
-            'nameD'=>$nameDetail,
-            'reference'=>$reference
+            $order->setPanier($panier);
+            $order->setReference($reference);
+            $order->setTotal($total[0]);
+            $order->setCreatedAt(new \DateTimeImmutable);
+            $order->setUser($this->getUser());
+            $order->setAadresseFacturation($adressLivraison);
+            $order->setAadresseLivraison($adressDetail);
+            $order->setNameFacturation($nameDetail);
+            $order->setNameLivraison($nameLivraison);
+            $order->setEmail($emailLivraison);
+            $order->setState(false);
+            $order->setStateSending('en cours');
+            $order->setQuantity($qte);
+
+            $em->persist($order);
+            $em->flush();
+
+            $commande = $re->findAll();
+
+            dd($commande);
+
+        return $this->render('payment/success.twig', [
+            'panier'=> $panier,
+            'commande' => $commande
         ]);
-
     }
+
     #[Route('/buy/cancel', name: 'cancel')]
     public function cancel(): Response
     {

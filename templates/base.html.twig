@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/home.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
     {% block css %}{% endblock %}
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -37,46 +38,47 @@
                     <span></span>
                 </button>
                 <div class="navlinks-container">
-                    <a href="{{ path('home') }}" aria-current="page"><i class='bx bxs-home' style='color:white'></i>
-                    </a>
-                    <a href="{{ path('info') }}">CONTACT</a>
+                    <a href="{{ path('home') }}" style="color: #F8760EBF ">HOME</a>
+                    <a href="{{ path('info') }}" style="color: white;">ABOUT US</a>
                     <div class="drop">
-                        <a href="{{ path('casque') }}"><i class='bx bxs-store' style='color:white'></i> BOUTIQUE</a>
+                        <a href="{{ path('casque') }}">SHOP</a>
                         <div class="content">
                             <a href="{{ path('casque') }}">CASQUES</a>
                             <a href="{{ path('acc') }}">ACCESSOIRES</a>
-                            <a href="">ÉPAULIÈRES</a>
-                            <a href="">CRAMPONS</a>
+                            <a href="{{ path('epauliere') }}">ÉPAULIÈRES</a>
+                            <a href={{ path('crampons') }}>CRAMPONS</a>
                         </div>
                     </div>
                     <form class="d-flex" action="{{ path('panier') }}" method="POST">
                         <button class="btn btn-light" type="submit">
                             <i class="bi-cart-fill me-1"></i>
-                            PANIER
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                         </button>
                     </form>
                 </div>
             </div>
             <div class="nav-authentication">
-                <a href="#" class="sign-user" aria-label="Sign in page">
+                <a href="{{ path('profil') }}" class="sign-user" aria-label="Sign in page">
                     <img src="{{ asset('ressources/user.svg') }}" alt="user-icon">
                 </a>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
                     <div class="sign-btns">
-                        <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
+                        <a href="{{ path('profil') }}" class="btn btn-close-white"><i class=" bx bxs-user"></i>
+                            {{ app.user.nom }}</a>
+                        <a href="{{ path('app_logout') }}" class="btn btn-danger">DÉCONNEXION</a>
+
 
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('admin') }}" class="btn btn-info">Administrateur</a>
+                            <a href="{{ path('admin') }}" class="btn btn-info">ADMIN</a>
                         {% endif %}
 
                     </div>
                 {% else %}
                     <div class="sign-btns">
-                        <button id="Connexion" type="button">Connexion</button>
+                        <button id="Connexion" type="button">CONNEXION</button>
 
-                        <button id="Inscription" type="button">Inscription</button>
+                        <button id="Inscription" type="button">INSCRIPTION</button>
                     </div>
                 {% endif %}
             </div>
@@ -87,10 +89,27 @@
 <main>
     {% block main %} {% endblock %}
 </main>
-<footer>
+{% block footer %}
+<footer class="footer">
+    <aside class="us">
+        <p>Contact US </p>
+        <p>01 01 01 01 01</p>
+        <p>météore@admin.fr</p>
+        <p>9 rue de Rosny, Fontenay-sous-bois, 94120</p>
+    </aside>
+
+    <aside class="mentions">
     <a href="#">&copy; Météore de Fontenay</a>
+    <a href="{{ asset('img/mentions/Votre-document.jpg') }}" target="_blank">Mentions Légale</a>
+    <a href="{{ asset('img/mentions/CGU.jpg') }}" target="_blank">CGU</a>
+    <a href="{{ asset('img/mentions/CGU.jpg') }}" target="_blank">CGV</a>
+    </aside>
+
 </footer>
-<script src="script.js"></script>
+
+{% endblock %}
+<script src="{{ asset('js/script.js') }}"></script>
+<script src="{{ asset('js/bootstrap.js') }}"></script>
 <script>
     document.getElementById("Connexion").onclick = function () {
         location.href = "{{ path('connexion') }}";

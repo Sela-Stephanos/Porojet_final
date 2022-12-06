@@ -1,0 +1,14 @@
+.home-main{
+  .home-div{
+    img{
+      z-index: -20;
+      max-height: 95vh;
+      position: relative;
+    }
+    @media screen and (max-width: 900px){
+      img{
+        height: 100vh;
+      }
+        }
+      }
+    }

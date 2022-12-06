@@ -1,0 +1,41 @@
+.profil{
+  margin: 0;
+  ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    background-color: black;
+    position: fixed;
+    overflow: auto;
+    height: 100%;
+
+
+    li a{
+      display: block;
+      padding: 8px 16px;
+      text-decoration: none;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+
+      &:hover:not(.activet){
+        background-color: $meteor-2;
+        color: white;
+      }
+    }
+  }
+  .compte{
+    text-align: center;
+    margin-left: 25%;
+    padding: 1px 16px;
+      background-color: black;
+      position: -webkit-sticky;
+      position: sticky;
+      color: $white;
+  }
+  .profil-content{
+    width: 75%;
+    margin-left: 2em;
+  }
+}

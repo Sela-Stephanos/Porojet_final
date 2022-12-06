@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\OrderRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
@@ -41,8 +42,8 @@ class Order
     #[ORM\Column(length: 255)]
     private ?string $Reference = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $Panier = null;
+    #[ORM\Column(type: Types::ARRAY)]
+    private ?array $Panier = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?User $User = null;
@@ -210,7 +211,7 @@ class Order
     /**
      * @return string|null
      */
-    public function getPanier(): ?string
+    public function getPanier(): ?array
     {
         return $this->Panier;
     }
@@ -218,7 +219,7 @@ class Order
     /**
      * @param string|null $Panier
      */
-    public function setPanier(?string $Panier): void
+    public function setPanier(?array $Panier): void
     {
         $this->Panier = $Panier;
     }

@@ -2,95 +2,23 @@
 {% block title %} HOME {% endblock %}
 
 {% block main %}
-    <section class="mt-5">
-    <h1> BIENVENUE </h1>
 
-    <article id="video" class="mt-5">
-        <iframe width="460" height="215" src="https://www.youtube.com/embed/Yj9EsdQyFaE" title="YouTube video player"
-                frameborder="0" allow="accelerometer;
-                    autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> MÉTÉORES
-            VS GONE
-        </iframe>
-    </article>
-    {#    </section>
-
-    <section class="mt-5 arriere">
-        <div class="container d-flex justify-content-center" style="flex-direction: column">
-
-            <div class="row">
-                <div class="col-md-6">
-                        <img src="{{ asset('img/ready.JPG') }}" alt="..." style="height: 450px; width: 550px">
-                </div>
-
-                <div class="col-md-6">
-                        <img src="{{ asset('img/84E47EA1-897D-47F3-AB39-57A745E72BD1.JPG') }}" alt="..." style="height: 450px;  width: 550px">
+    <section class="home-main">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner home-div">
+                <div class="carousel-item active caro2">
+                    <img src="{{ asset('img/fond.JPG') }}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2> Qui sommes-nous ? </h2>
+                        <p>Le 4 avril 1981 naissaient le club des Météores Football. C’est aujourd’hui le plus vieux club de
+                            France.</p>
+                        <p>Les Club des Météores est l’un des plus anciens club de Football Américain de France.</p>
+                        <p>Initialement situé à Nogent il a été relocalisé à Fontenay-sous-Bois. Il compte aujourd’hui plus de 300
+                            licenciés pratiquants le Football Américain, mais aussi le Flag et le Cheerleading.</p>
+                    </div>
                 </div>
             </div>
-
-
-        <div class="row mt-3">
-                <div class="col-md-6">
-                        <img src="{{ asset('img/IMG_4574.JPG') }}" alt="..." style="height: 550px; width: 550px">
-                </div>
-
-                <div class="col-md-6">
-                        <img src="{{ asset('img/flag.JPG') }}" alt="flag" style="height: 550px;  width: 550px">
-                </div>
         </div>
-
-        </div>
-
-    </section> #}
-
-    <section class="mt-5 phoo">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <figure class="snip1374" id="imd">
-                        <a href="#"><img src="{{ asset('img/84E47EA1-897D-47F3-AB39-57A745E72BD1.JPG') }}"
-                                         alt="sample66"/></a>
-                    </figure>
-                </div>
-                <div class="col-md-6 mt-5">
-                    <figure class="snip1374" id="imd">
-                        <a href="#"><img src="{{ asset('img/ready.JPG') }}" alt="sample66"
-                                         style="width: 650px; height: 425px;"></a>
-                    </figure>
-
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <figure class="snip1374" id="imd">
-                        <a href="#"><img src="{{ asset('img/IMG_4574.JPG') }}" alt="sample66" class="img-fluid"/></a>
-                    </figure>
-                </div>
-                <div class="col-md-6 mt-5">
-                    <figure class="snip1374" id="imd">
-                        <a href="#"><img src="{{ asset('img/ready.JPG') }}" alt="sample66"
-                                         style="width: 650px; height: 425px;"></a>
-                    </figure>
-                </div>
-
-            </div>
-
-        </div>
-
     </section>
-    <section id="description">
-        <article>
-            <h2> Qui sommes nous ? </h2>
-            <p>Le 4 avril 1981 naissaient le club des Météores Football. C’est aujourd’hui le plus vieux club de
-                France.</p>
-
-            <p>Les Club des Météores est l’un des plus anciens club de Football Américain de France.</p>
-
-            <p>Initialement situé à Nogent il a été relocalisé à Fontenay-sous-Bois. Il compte aujourd’hui plus de 300
-                licenciés pratiquants le Football Américain, mais aussi le Flag et le Cheerleading.</p>
-
-            <p>En ce qui concerne le football américain, les effectifs sont réparties parmi les</p>
-        </article>
-    </section>
-
 {% endblock %}
+{% block footer %} {% endblock %}

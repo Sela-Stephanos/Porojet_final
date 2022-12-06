@@ -1,0 +1,13 @@
+.footer{
+  color: $white;
+  display: flex;
+  justify-content: space-around;
+  .us{
+    justify-items: flex-start;
+  }
+  .mentions{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+}
