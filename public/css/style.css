@@ -145,5 +145,18 @@
     justify-items: center;
   }
 }
+.footer {
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-around;
+}
+.footer .us {
+  justify-items: flex-start;
+}
+.footer .mentions {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
 
 /*# sourceMappingURL=style.css.map */

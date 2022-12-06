@@ -38,11 +38,10 @@
                     <span></span>
                 </button>
                 <div class="navlinks-container">
-                    <a href="{{ path('home') }}" aria-current="page"><i class='bx bxs-home' style='color:white'></i>
-                    </a>
-                    <a href="{{ path('info') }}" style="color: white;">CONTACT</a>
+                    <a href="{{ path('home') }}" style="color: #F8760EBF ">HOME</a>
+                    <a href="{{ path('info') }}" style="color: white;">ABOUT US</a>
                     <div class="drop">
-                        <a href="{{ path('casque') }}"><i class='bx bxs-store' style='color:white'></i> BOUTIQUE</a>
+                        <a href="{{ path('casque') }}">SHOP</a>
                         <div class="content">
                             <a href="{{ path('casque') }}">CASQUES</a>
                             <a href="{{ path('acc') }}">ACCESSOIRES</a>
@@ -53,7 +52,6 @@
                     <form class="d-flex" action="{{ path('panier') }}" method="POST">
                         <button class="btn btn-light" type="submit">
                             <i class="bi-cart-fill me-1"></i>
-                            PANIER
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                         </button>
                     </form>
@@ -92,17 +90,23 @@
     {% block main %} {% endblock %}
 </main>
 {% block footer %}
-<footer>
-    <aside>
-        <h4>Contact US </h4>
+<footer class="footer">
+    <aside class="us">
+        <p>Contact US </p>
         <p>01 01 01 01 01</p>
         <p>météore@admin.fr</p>
         <p>9 rue de Rosny, Fontenay-sous-bois, 94120</p>
     </aside>
+
+    <aside class="mentions">
     <a href="#">&copy; Météore de Fontenay</a>
-    <a href="{{ asset('img/mentions/CGU.jpg') }}" target="_blank">CGU</a>
     <a href="{{ asset('img/mentions/Votre-document.jpg') }}" target="_blank">Mentions Légale</a>
+    <a href="{{ asset('img/mentions/CGU.jpg') }}" target="_blank">CGU</a>
+    <a href="{{ asset('img/mentions/CGU.jpg') }}" target="_blank">CGV</a>
+    </aside>
+
 </footer>
+
 {% endblock %}
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/bootstrap.js') }}"></script>
